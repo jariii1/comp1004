@@ -1,42 +1,143 @@
-document.querySelectorAll("nav a").forEach(link => {
-  link.addEventListener("click", e => {
-    e.preventDefault()
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PlaySmith</title>
+  <link href="css/styless.css" rel="stylesheet"  />
 
-    const target = link.dataset.view
+</head>
 
-    document.querySelectorAll(".view").forEach(v => {
-      v.classList.remove("active")
-    })
+<body>
 
-    document.getElementById(target).classList.add("active")
-  })
-})
+  <h1>PlaySmith</h1>  
+  <button id="loginBtn">Login with Spotify</button>
+
+  <!-- <section id="profile">
+    <h2>Logged in as <span id="displayName"></span></h2>
+    <span id="avatar"></span>
+    <ul>
+      <li>User ID: <span id="id"></span></li>
+      <li>Email: <span id="email"></span></li>
+      <li>Spotify URI: <a id="uri" href="#"></a></li>
+      <li>Link: <a id="url" href="#"></a></li>
+      <li>Profile Image: <span id="imgUrl"></span></li>
+    </ul>
+
+    </section> -->
+
+  <nav aria-label="Primary">
+    <a href="#" data-view="library">Library</a>
+    <a href="#" data-view="playlists">Playlists</a>
+    <a href="#" data-view="albums">Albums</a>
+    <a href="#" data-view="duplicates">Duplicates</a>
+    <a href="#" data-view="settings">Settings</a>
+   </nav>
 
 
-// Authorization token that must have been created previously. See : https://developer.spotify.com/documentation/web-api/concepts/authorization
-const token = 'undefined';
-async function fetchWebApi(endpoint, method, body) {
-  const res = await fetch(`https://api.spotify.com/${endpoint}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    method,
-    body:JSON.stringify(body)
-  });
-  return await res.json();
-}
+  <main style="padding: 16px; font-family: system-ui, Arial, sans-serif;">
+  
+     <!-- LIBRARY VIEW -->
+    <section id="library" class="view active">
+      <h2>Music Library</h2>
+      <div class="controls">
+        <label>
+          Sort by
+          <select id="sortField">
+            <option value="artist">Artist</option>
+            <option value="title">Song title</option>
+            <option value="plays">Play count</option>
+            <option value="rating">Rating</option>
+            <option value="duration">Duration</option>
+            <option value="year">Release year</option>
+          </select>
+        </label>
 
-async function getTopTracks(){
-  // Endpoint reference : https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
-  return (await fetchWebApi(
-    'v1/me/top/tracks?time_range=long_term&limit=5', 'GET'
-  )).items;
-}
 
-const topTracks = await getTopTracks();
-console.log(
-  topTracks?.map(
-    ({name, artists}) =>
-      `${name} by ${artists.map(artist => artist.name).join(', ')}`
-  )
-);
+        <label>
+          Order
+          <select id="sortOrder">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+        </label>
+      </div>
+
+      <h2>Tracks</h2>
+
+      <ul id="trackList" class="track-list">
+        <!-- Tracks rendered here by JS -->
+      </ul>
+    </section>
+    
+
+     <!-- Playlists rendered in section by JS -->
+    <section id="playlists" class="view">
+      <h2>Playlists</h2>
+      <div class="controls">
+        <button id="createPlaylistBtn">Create New Playlist</button>
+        <button id="importPlaylistBtn">Import Playlist</button>
+        <button id="exportPlaylistsBtn">Export All Playlists</button>
+      </div>
+
+      <label>
+        Order
+        <select id="playlistSortOrder">
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+      </label>
+      <ul id="playlistList" class="playlist-list">
+      
+      </ul>
+    </section>
+    
+    <!-- Albums rendered in  here by JS -->
+    <section id="albums" class="view">
+      <h2>Albums</h2>
+      <div class="controls">
+        <label>
+          Sort by
+          <select id="albumSortField">
+            <option value="artist">Artist</option>
+            <option value="title">Album title</option>
+            <option value="year">Release year</option>
+          </select>
+        </label>
+
+        <label>
+          Order
+          <select id="albumSortOrder">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+        </label>
+      </div>
+
+      <ul id="albumList" class="album-list">
+        
+      </ul>
+    </section>
+
+
+    <section id="duplicates" class="view">
+      <h2>Duplicate Tracks</h2>
+      <div class="controls">
+        <button id="removeDuplicatesBtn">Remove Selected Duplicates</button>
+      </div>
+    </section>
+
+
+
+    <section id="settings" class="view"></section>
+
+
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/duplicates.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
