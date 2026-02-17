@@ -11,7 +11,20 @@
 <body>
 
   <h1>PlaySmith</h1>  
-  <h3>Your Music Library Manager</h3>
+  <button id="loginBtn">Login with Spotify</button>
+
+  <!-- <section id="profile">
+    <h2>Logged in as <span id="displayName"></span></h2>
+    <span id="avatar"></span>
+    <ul>
+      <li>User ID: <span id="id"></span></li>
+      <li>Email: <span id="email"></span></li>
+      <li>Spotify URI: <a id="uri" href="#"></a></li>
+      <li>Link: <a id="url" href="#"></a></li>
+      <li>Profile Image: <span id="imgUrl"></span></li>
+    </ul>
+
+    </section> -->
 
   <nav aria-label="Primary">
     <a href="#" data-view="library">Library</a>
@@ -58,7 +71,7 @@
     </section>
     
 
-
+     <!-- Playlists rendered in section by JS -->
     <section id="playlists" class="view">
       <h2>Playlists</h2>
       <div class="controls">
@@ -75,10 +88,11 @@
         </select>
       </label>
       <ul id="playlistList" class="playlist-list">
-        <!-- Playlists rendered here by JS -->
+      
       </ul>
     </section>
-
+    
+    <!-- Albums rendered in  here by JS -->
     <section id="albums" class="view">
       <h2>Albums</h2>
       <div class="controls">
@@ -101,7 +115,7 @@
       </div>
 
       <ul id="albumList" class="album-list">
-        <!-- Albums rendered here by JS -->
+        
       </ul>
     </section>
 
