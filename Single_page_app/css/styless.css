@@ -1,45 +1,10 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
 
-<style>
-    /* Layout */
-    nav {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      padding: 12px 16px;
-      background: #111;
-    }
-
-    /* Make links LOOK like buttons */
-    nav a {
-      display: inline-block;
-      padding: 10px 14px;
-      border-radius: 10px;
-      background: #222;
-      color: white;
-      text-decoration: none;
-      font-family: system-ui, Arial, sans-serif;
-      font-size: 14px;
-      border: 1px solid #333;
-    }
-
-    nav a:hover {
-      background: #2f2f2f;
-      border-color: #444;
-    }
-
-    nav a:active {
-      transform: translateY(1px);
-    }
-
-    /* Optional: show current page */
-    nav a[aria-current="page"] {
-      background: white;
-      color: #111;
-      border-color: white;
-      font-weight: 600;
-    }
-
-    .view {
+.view {
   display: none;
 }
 
@@ -47,4 +12,184 @@
   display: block;
 }
 
-  </style>
+/* Styles for the navigation bar */
+#navBar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar {
+  background-image: linear-gradient(to right, #0fd934, #012808);
+  padding: 0;
+}
+
+.navbar-nav li{
+  padding: 0 20px
+}
+
+.navbar-toggler {
+  outline: none !important;
+}
+
+.navbar-nav li a {
+  color: white !important;
+  float: right;
+  text-align: left;
+  font-weight: 600;
+}
+
+.navbar-brand {
+  font-size: 30px;
+  font-weight: 700;
+  color: white !important;
+
+}
+
+.fa-bars {
+  color: white;
+  font-size: 24px;
+}
+
+
+
+/* Styles for the banner area */
+
+#banner {
+  background-image: linear-gradient(to right, #0fd934, #012808);
+  padding-top: 10%;
+}
+
+.title-text {
+  font-size: 42px;
+  color: white;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.promo-text {
+  color: white;
+  font-weight: 500;
+  
+}
+
+.spotify-logo {
+  width: 100px;
+  margin-top: 20px;
+}
+
+.spotify-button {
+  color: white;
+  text-decoration: none;
+  
+}
+
+.image-a{
+  
+}
+
+
+.bottom-img {
+  width: 100%;
+
+}
+
+/* Styles for the services area */
+
+.guitar-img {
+  padding-left: 10%;
+}
+
+.services-text {
+  padding-top: 20px;
+  font-size: 18px;
+  color: #333;
+  line-height: 1.6;
+  margin-top: 20px;
+}
+
+.service-icon{
+  width: 100px;
+  height: 100px;
+  margin-bottom: 15px;
+}
+
+
+/* ---- Library / Track list ---- */
+
+#library {
+  padding: 2rem;
+}
+
+.track-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Each track row */
+.track {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+}
+
+/* Album art thumbnail */
+.track-art {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Title and artist stacked vertically */
+.track-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0; /* prevents text overflow breaking layout */
+}
+
+.track-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: #111;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-artist {
+  font-size: 13px;
+  color: #666;
+}
+
+.track-duration {
+  font-size: 13px;
+  color: #888;
+  flex-shrink: 0;
+}
+
+.track-remove {
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.track-remove:hover {
+  color: #e33;
+  background: #fff0f0;
+}
