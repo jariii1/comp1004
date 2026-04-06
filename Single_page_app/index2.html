@@ -3,87 +3,213 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="css/styless.css" rel="stylesheet"  />
+    <link href="css/styles.css" rel="stylesheet"  />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <title>Single Page App</title>
+    <title>PlaySmith</title>
 </head>
 
 <body>
 
-    <section id="navBar">
+<main id="app">
+        
+        <section id="navBar">
 
- <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">PLAYSMITH</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-      <i class="fa-whiteboard fa-semibold fa-bars"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">         
-        <li class="nav-item">
-          <a class="nav-link" href="#">Library</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Playlists</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Albums</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Duplicates</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Settings</a>
-        </li>
-      </ul>
-    </div>
-  </div>
- </nav>
-
-  
-   </section>
-
-    <!------------------banner section------------------>
-
-   <section id="banner">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <p class="title-text">Fresh Music Organizer</p>
-                <p class="promo-text">Your music will never be lost again! You can edit your playlists and albums with ease, delete music duplicates and freshen up your Spotify</p>
-            </div>
-            <div class="col-md-6 text-center">
-                <img src="images/hiclipart.com(2).png" class="image-a">
-            </div>
-            </div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand view-active" href="#" id="home">PLAYSMITH </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        <i class="fa-whiteboard fa-semibold fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">         
+            <li class="nav-item">
+            <a class="nav-link" href="#" data-view="library">Library</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#" data-view="playlists">Playlists</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#" data-view="albums">Albums</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#" data-view="duplicates">Duplicates</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#" data-view="settings">Settings</a>
+            </li>
+        </ul>
         </div>
     </div>
+    </nav>
+
     
-    <img src="images/wave1.png" class="bottom-img">
-   </section>
+    </section>
 
-   <!-------------services section------------------>
+        <!------------------banner section------------------>
 
-   <section id="services">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-
-                
+    <section id="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="title-text">Fresh Music Organizer</p>
+                    <p class="promo-text">Your music will never be lost again! You can edit your playlists and albums with ease, delete music duplicates and freshen up your Spotify</p>
+                    <img src="images/spotify-brands-solid-full.svg" class="spotify-logo">
+                    <a href="#" id="spotify-button" class="spotify-button">Login in to Spotify</a>
+                </div>
+                <div class="col-md-6 text-center">
+                    <img src="images/hiclipart.com(2).png" class="image-a">
+                </div>
+                </div>
             </div>
+        </div>
+        
+        <img src="images/wave1.png" class="bottom-img">
+    </section>
 
+    <!-------------services section------------------>
+
+    <section id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 services">
+                    <img src="images/shuffle-solid-full.svg" class="service-icon">
+                    <h3>Playlist Management</h3>
+                    <p>Easily create, edit, and organize your playlists with our intuitive interface.</p>
+                </div>
+                <div class="col-md-4 services">
+                    <img src="images/music-solid-full.svg" class="service-icon">
+                    <h3>Album Management</h3>
+                    <p>Organize your album collection with our easy-to-use interface.</p>
+                </div>
+                <div class="col-md-4 services">
+                    <img src="images/file-audio-regular-full.svg" class="service-icon">
+                    <h3>Duplicate Removal</h3>
+                    <p>Identify and remove duplicate tracks from your music library with our advanced detection algorithms.</p>
+                </div>
+            </div>
         </div>
 
+        <img src="images/guitar.png" class="guitar-img">
+        
 
 
-    </div>
+    </section>
+
+        <!-- user content-->
+
+        <script>
+        const data = {
+        user: "Ngoni",
+        theme: "dark",
+        projects: ["playsmith"]
+        };
+
+        localStorage.setItem("appData", JSON.stringify(data));
+        </script>
+
+
+    
+        <!-- LIBRARY VIEW -->
+        <section id="library" class="view">
+        <h2>Library</h2>
+        <div class="controls">
+            <label>
+            Sort by
+            <select id="sortField">
+                <option value="artist">Artist</option>
+                <option value="title">Song title</option>
+                <option value="plays">Play count</option>
+                <option value="rating">Rating</option>
+                <option value="duration">Duration</option>
+                <option value="year">Release year</option>
+            </select>
+            </label>
+
+
+            <label>
+            Order
+            <select id="sortOrder">
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+            </select>
+            </label>
+        </div>
+
+        <h2>Tracks</h2>
+
+        <ul id="trackList" class="track-list">
+            <!-- Tracks rendered here by JS -->
+
+        </ul>
+        </section>
+        
+
+        <!-- Playlists rendered in section by JS -->
+        <section id="playlists" class="view">
+        <h2>Playlists</h2>
+        <div class="controls">
+            <button id="createPlaylistBtn">Create New Playlist</button>
+            <button id="importPlaylistBtn">Import Playlist</button>
+            <button id="exportPlaylistsBtn">Export All Playlists</button>
+        </div>
+
+        <label>
+            Order
+            <select id="playlistSortOrder">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+            </select>
+        </label>
+        <ul id="playlistList" class="playlist-list">
+        
+        </ul>
+        </section>
+        
+        <!-- Albums rendered in  here by JS -->
+        <section id="albums" class="view">
+        <h2>Albums</h2>
+        <div class="controls">
+            <label>
+            Sort by
+            <select id="albumSortField">
+                <option value="artist">Artist</option>
+                <option value="title">Album title</option>
+                <option value="year">Release year</option>
+            </select>
+            </label>
+
+            <label>
+            Order
+            <select id="albumSortOrder">
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+            </select>
+            </label>
+        </div>
+
+        <ul id="albumList" class="album-list">
+            
+        </ul>
+        </section>
+
+
+        <section id="duplicates" class="view">
+        <h2>Duplicate Tracks</h2>
+        <div class="controls">
+            <button id="removeDuplicatesBtn">Remove Selected Duplicates</button>
+        </div>
+        </section>
 
 
 
+        <section id="settings" class="view"></section>
 
 
-   </section>
+</main>
+
+  <script type="module" src="js/app.js"></script>
+
 </body>
 </html>
