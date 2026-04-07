@@ -5,7 +5,165 @@ document.querySelectorAll("nav a").forEach(link => {
     const target = link.dataset.view
 
     document.querySelectorAll(".view").forEach(v => {
-      v.classList.remove("active")
+      v.classList.remimport { renderTracks, showView } from "./ui.js";
+import { saveTracks } from "./storage.js";
+
+const clientId = "5a77f12758da4c94a068385d5745ea5a";
+const redirectUri = "http://127.0.0.1:5173/";
+const scopes = [
+  "user-read-private",
+  "user-read-email",
+  "user-top-read",
+  "user-read-recently-played"
+].join(" ");
+
+/* =======================
+   SPA ENTRY POINT
+======================= */
+
+init();
+
+async function init() {
+  const code = new URLSearchParams(window.location.search).get("code");
+
+  document
+    .getElementById("spotify-button")
+    ?.addEventListener("click", login);
+
+  if (!code) return;
+
+  try {
+    const token = await getAccessToken(code);
+    localStorage.setItem("access_token", token);
+
+    // Clean the ?code= out of the URL bar after we've used it
+    window.history.replaceState({}, document.title, "/");
+
+    const topTracks = await fetchTopTracks(token);
+
+    // Save to localStorage so we can use them later without re-fetching
+    saveTracks(topTracks);
+
+    renderTracks(topTracks);
+    showView("library");
+
+  } catch (err) {
+    console.error("Something went wrong:", err);
+  }
+}
+
+/* =======================
+   AUTH
+======================= */
+
+async function login() {
+  const verifier = generateCodeVerifier(128);
+  const challenge = await generateCodeChallenge(verifier);
+  localStorage.setItem("verifier", verifier);
+
+  const params = new URLSearchParams({
+    client_id: clientId,
+    response_type: "code",
+    redirect_uri: redirectUri,
+    scope: scopes,
+    code_challenge_method: "S256",
+    code_challenge: challenge
+  });
+
+  window.location = `https://accounts.spotify.com/authorize?${params}`;
+}
+
+async function getAccessToken(code) {
+  const verifier = localStorage.getItem("verifier");
+
+  const body = new URLSearchParams({
+    client_id: clientId,
+    grant_type: "authorization_code",
+    code,
+    redirect_uri: redirectUri,
+    code_verifier: verifier
+  });
+
+  const res = await fetch("https://accounts.spotify.com/api/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body
+  });
+
+  if (!res.ok) throw new Error("Failed to get access token");
+
+  const data = await res.json();
+  return data.access_token;
+}
+
+/* =======================
+   SPOTIFY TRACK FETCHING
+======================= */
+
+async function fetchTopTracks(token) {
+  const res = await fetch("https://api.spotify.com/v1/me/top/tracks?limit=20", {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch top tracks");
+
+  const data = await res.json();
+  return data.items;
+}
+
+/* =======================
+   SPOTIFY ALBUM FETCHING
+======================= */
+async function fetchAlbums(token) {
+  const res = await fetch("https://api.spotify.com/v1/me/top/albums?limit=20", {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch top albums");
+
+  const data = await res.json();
+  return data.items;
+  
+}
+
+/* =======================
+   SPOTIFY Playlist FETCHING
+======================= */
+async function fetchPlaylists(token) {
+  const res = await fetch("https://api.spotify.com/v1/me/top/playlists?limit=20", {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch top playlists");
+
+  const data = await res.json();
+  return data.items;
+  
+}
+
+/* =======================
+   PKCE HELPERS
+======================= */
+
+function generateCodeVerifier(length) {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  return Array.from({ length }, () => chars[Math.floor(Math.random() * chars.length)]).join("");
+}
+
+async function generateCodeChallenge(verifier) {
+  const data = new TextEncoder().encode(verifier);
+  const digest = await crypto.subtle.digest("SHA-256", data);
+  return btoa(String.fromCharCode(...new Uint8Array(digest)))
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
+}ove("active")
     })const clientId = "5a77f12758da4c94a068385d5745ea5a";
 const redirectUri = "http://127.0.0.1:5173/";
 const scopes = [
